@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "BiuNote",
+  "version": "0.1.0",
+  "identifier": "com.biunote.desktop",
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "npm run prepare-ui",
+    "frontendDist": "../dist-ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "BiuNote",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 960,
+        "minHeight": 640,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": false,
+        "shadow": false,
+        "transparent": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' asset: http://asset.localhost https://asset.localhost ipc: http://ipc.localhost; connect-src 'self' ipc: http://ipc.localhost http://127.0.0.1:* http://localhost:* https:; img-src 'self' asset: http://asset.localhost https://asset.localhost data: blob: http: https:; media-src 'self' asset: http://asset.localhost https://asset.localhost blob: http: https:; style-src 'self' 'unsafe-inline' asset: http://asset.localhost https://asset.localhost; script-src 'self' 'unsafe-inline' asset: http://asset.localhost https://asset.localhost; font-src 'self' asset: http://asset.localhost https://asset.localhost data:; worker-src 'self' blob:; frame-src 'self' http: https:"
+    }
+  },
+  "bundle": {
+    "active": false,
+    "targets": ["nsis"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  },
+  "plugins": {
+    "fs": {
+      "requireLiteralLeadingDot": false
+    }
+  }
+}
