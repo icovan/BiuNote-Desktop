@@ -126,7 +126,7 @@ dependencies = [
 
 [[package]]
 name = "biunote"
-version = "0.2.1-billing-live"
+version = "0.2.2-live"
 dependencies = [
  "serde",
  "serde_json",
