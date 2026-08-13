@@ -251,8 +251,24 @@ ssh -T git@gitee.com
 ## 9. 日常维护傻瓜流程
 
 ```text
-改代码 → git add → git commit → git push github → git push gitee
+改 desktop（私有 biu-pro）→ 一键同步开源仓 →（可选）commit + push Gitee/GitHub
 ```
+
+**不要**每次手工复制。用脚本把 `biu-pro/desktop` 镜像到 `E:\open\biunote-desktop`：
+
+```powershell
+# 只同步文件（先看 diff）
+powershell -NoProfile -ExecutionPolicy Bypass -File E:\SIM+\biu-pro\desktop\scripts\sync-opensource.ps1
+
+# 同步 + 提交 + 推 Gitee/GitHub
+powershell -NoProfile -ExecutionPolicy Bypass -File E:\SIM+\biu-pro\desktop\scripts\sync-opensource.ps1 `
+  -Commit -Push -Message "sync: about contact + UI"
+
+# 开源目录不在默认路径时：
+# $env:BIUNOTE_OPEN_DIR = "D:\path\biunote-desktop"
+```
+
+脚本会排除 `node_modules` / `dist-ui` / `target` / `.git` / `OPENSOURCE_PUBLISH.md`，并用 `/MIR` 与主仓对齐（主仓删了的文件，开源仓也会删）。
 
 发版本时：
 
@@ -261,6 +277,7 @@ ssh -T git@gitee.com
 3. 打 tag：`git tag v0.2.2 && git push github v0.2.2 && git push gitee v0.2.2`
 4. 桌面：`cd desktop && npm run build` → 上传 `BiuNote-V0.2.2.exe`
 5. GitHub / Gitee Releases 上传同一文件
+6. 再跑一遍 `sync-opensource.ps1 -Commit -Push`，让公开仓源码与本版一致
 
 ---
 
