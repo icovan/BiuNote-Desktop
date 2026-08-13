@@ -1,0 +1,23 @@
+{
+  "name": "biunote-desktop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "BiuNote Windows desktop shell (Tauri)",
+  "scripts": {
+    "prepare-ui": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/prepare-ui.ps1",
+    "sync-version": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/sync-version.ps1",
+    "dev": "npm run prepare-ui && tauri dev",
+    "build": "npm run sync-version && tauri build && powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/sync-version.ps1 -RenameExe",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2",
+    "@tauri-apps/plugin-fs": "^2",
+    "@tauri-apps/plugin-shell": "^2"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "esbuild": "^0.25.0"
+  }
+}
