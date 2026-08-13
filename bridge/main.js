@@ -23,17 +23,20 @@ window.__BIUPRO_DESKTOP__ = {
   openBiupuFile: async () => {
     const selected = await openDialog({
       multiple: false,
-      filters: [{ name: 'BiuNote', extensions: ['biupu', 'txt'] }],
+      filters: [{ name: 'BiuNote', extensions: ['bn'] }],
     })
     if (!selected) return null
     const path = String(selected)
+    if (!/\.bn$/i.test(path)) {
+      throw new Error('BN_ONLY')
+    }
     const text = await readTextFile(path)
     return { path, text }
   },
   saveBiupuFile: async (contents, opts = {}) => {
     const path = await saveDialog({
-      defaultPath: opts.defaultPath || opts.suggestedName || 'score.biupu',
-      filters: [{ name: 'BiuNote', extensions: ['biupu'] }],
+      defaultPath: opts.defaultPath || opts.suggestedName || 'score.bn',
+      filters: [{ name: 'BiuNote', extensions: ['bn'] }],
     })
     if (!path) return null
     await writeTextFile(path, contents)
