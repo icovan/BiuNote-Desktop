@@ -1,36 +1,38 @@
 # BiuNote Desktop
 
-**最简单语法，最酷曲谱。**
+**English** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
-用 BiuNote 编码 / 指令，几分钟做出能播放、能修改的吉他弹唱谱。
+**The simplest syntax. The coolest charts.**
 
-[官网 / 在线打谱](https://www.biunow.cn) · [下载桌面版](https://www.biunow.cn) · [GitHub](https://github.com/icovan/BiuNote-Desktop) · [Gitee](https://gitee.com/zaokework/biunote-desktop)
+Write BiuNote code or commands and get a playable, editable guitar accompaniment chart in minutes.
 
-<!-- 将截图放到 docs/screenshots/ 后取消注释 -->
-<!-- ![工作台](docs/screenshots/01-hero-workspace.png) -->
+[Website / online editor](https://www.biunow.cn) · [Download](https://www.biunow.cn) · [GitHub](https://github.com/icovan/BiuNote-Desktop) · [Gitee](https://gitee.com/zaokework/biunote-desktop)
+
+<!-- Uncomment after adding docs/screenshots/01-hero-workspace.png -->
+<!-- ![Workbench](docs/screenshots/01-hero-workspace.png) -->
 
 ---
 
-## 这是什么
+## What this repo is
 
-独立窗口运行的 **桌面客户端（Tauri，MIT）**，打包 BiuNote 工作台，默认连接官方服务 `https://www.biunow.cn`。
+A **desktop client** (Tauri, MIT) that wraps the BiuNote workbench and talks to the official API at `https://www.biunow.cn`.
 
-| 本仓库有 | 本仓库没有 |
+| In this repo | Not in this repo |
 | --- | --- |
-| 桌面壳、打包脚本、图标 | 服务端、支付、管理后台、完整业务源码 |
+| Desktop shell, build scripts, icons | Server, payments, admin, full product source |
 
-登录、云谱、编译、会员能力由官方在线服务提供。需要私有部署或二次商用，见文末授权。
+Sign-in, cloud scores, compile, and Pro features run on BiuNote’s hosted service. For self-hosting or commercial use, see licensing below.
 
 ---
 
-## 为什么用 BiuNote
+## Why BiuNote
 
-不是对标 Guitar Pro 的精修排版，而是：**从想法到可播谱面，以分钟计。**
+Not a Guitar Pro clone for pixel-perfect engraving. The point is **idea → playable chart, in minutes**.
 
-- **编码打谱**：弦位 `a`–`f`，小节 `|`，和弦与技法用短语法写出
-- **指令成谱**：结构 × 和弦 × 节奏型 → 生成可继续手改的谱
-- **多种谱面**：六线 / 简谱 / 五线 / 弹唱组合
-- **能带走**：试听；Pro 可导出 PDF / GP / MIDI
+- **Code the chart** — strings `a`–`f`, bars `|`, chords and techniques as short tokens
+- **Command mode** — form × chords × rhythm pattern → a chart you can still edit
+- **Views** — tab, numbered notation, staff, or mixed accompaniment
+- **Take it with you** — playback; Pro export to PDF / Guitar Pro / MIDI
 
 ```text
 title: Demo
@@ -39,52 +41,52 @@ tempo: 96
 "Am" a0 c2 e0 a0 | "G"  V[axfx] |
 ```
 
-卡住时打开应用内 **语法** 与手册。
+If you get stuck, open **Syntax** and the in-app manual.
 
 ---
 
-## 从源码运行
+## Run from source
 
-需要 Node.js 18+、Rust、Windows 下 VS2022（C++ 桌面 / MSVC）、WebView2。
+You need Node.js 18+, Rust, Visual Studio 2022 (C++ desktop / MSVC) on Windows, and WebView2.
 
 ```powershell
 npm install
 npm run dev
 ```
 
-默认连接官网 API。连本地后端时：
+This talks to the production API by default. For a local backend:
 
 ```powershell
 $env:BIUPRO_DESKTOP_LOCAL = "1"   # → http://127.0.0.1:8091
 npm run dev
 ```
 
-打包绿色版：
+Portable build:
 
 ```powershell
 npm run build
 ```
 
-产物在 `src-tauri/target/release/`（`BiuNote.exe` 与带版本号的副本）。
+Output: `src-tauri/target/release/` (`BiuNote.exe` and a versioned copy).
 
 ---
 
-## 在线 Pro 与源码授权
+## Pro and source license
 
-桌面壳 **MIT，免费**。账号、云同步、支付和 **完整服务端** 不在本仓库。
+The desktop shell is **MIT and free**. Accounts, cloud sync, payments, and the **full server** are not in this repository.
 
-- **在线打谱 / Pro**：月付 · 年付 · 终身 → [官网套餐](https://www.biunow.cn)
-- **全栈源码授权**（含服务端，可私有部署）：
+- **Online editor / Pro** — monthly, yearly, or lifetime → [pricing](https://www.biunow.cn)
+- **Full-stack source license** (includes server, self-hosting):
 
-| 档位 | 适合 | 参考价 |
+| Tier | For | From |
 | --- | --- | --- |
-| 个人授权 | 本人部署，不可转售 / 不可做公开 SaaS | ¥2,999 |
-| 团队授权 | 团队内部 + 一次部署协助 | ¥6,999 |
-| 商业授权 | 品牌替换、商用上线（非独占） | ¥19,999 |
+| Personal | Your own deploy; no resale / no public SaaS | ¥2,999 |
+| Team | Internal team + one setup assist | ¥6,999 |
+| Commercial | Branding and commercial launch (non-exclusive) | ¥19,999 |
 
-价格与交付范围以沟通为准。咨询请通过 [官网留言](https://www.biunow.cn)。
+Scope and price are confirmed in conversation. Reach us via [the website](https://www.biunow.cn).
 
-> 收费的是完整业务源码与授权，不是对本 MIT 桌面仓库再收费。
+> You pay for the full product source and license — not for this MIT desktop repo.
 
 ---
 
