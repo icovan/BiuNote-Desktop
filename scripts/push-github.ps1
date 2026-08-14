@@ -36,5 +36,12 @@ if ($names -notcontains $remote) {
 }
 
 Write-Host ("[push-github] {0}  prefix=desktop  ->  {1}" -f $branch, $url)
-git subtree push --prefix=desktop $remote main
+# Version-bump hook is for Gitee product pushes only.
+$env:BIUPRO_SKIP_VERSION_BUMP = '1'
+try {
+  git subtree push --prefix=desktop $remote main
+  if ($LASTEXITCODE -ne 0) { throw 'git subtree push failed' }
+} finally {
+  Remove-Item Env:BIUPRO_SKIP_VERSION_BUMP -ErrorAction SilentlyContinue
+}
 Write-Host '[push-github] OK  https://github.com/icovan/BiuNote-Desktop'
