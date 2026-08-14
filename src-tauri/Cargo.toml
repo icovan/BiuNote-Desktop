@@ -1,6 +1,6 @@
 [package]
 name = "biunote"
-version = "0.2.6-live"
+version = "0.2.7-live"
 description = "BiuNote desktop shell"
 authors = ["BiuNote"]
 edition = "2021"
